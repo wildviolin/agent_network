@@ -59,7 +59,7 @@ class NetworkGenerator:
         agents_candidate = {obj.id: obj for obj in self.agents}
         while agents_candidate:
             node_a = agents_candidate[random.choice(list(agents_candidate.keys()))]
-            if node_a.out_degree >= node_a.max_out_bound:
+            if node_a.out_degree >= min(node_a.max_out_bound,len(self.agents)-1):
                 agents_candidate.pop(node_a.id, None)
                 continue
 
@@ -81,8 +81,8 @@ class NetworkGenerator:
                 # 更新节点的出入度数
                 node_a.out_degree += 1
                 node_b.in_degree += 1
-                # 更新节点B的优先因子 # todo 更新优先因子
-                node_b.priority_factor = node_b.in_degree * node_b.attractiveness
+                # 更新节点B的优先因子
+                node_b.priority_factor = node_b.in_degree
                 self.G.add_edge(node_a.id, node_b.id, weight=1)
             else:
                 e = self.G[node_a.id][node_b.id]

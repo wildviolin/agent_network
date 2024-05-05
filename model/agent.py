@@ -15,7 +15,7 @@ class Agent:
 
         # 随机性偏好越低，越倾向于优先链接。越高越倾向于随机链接节点。
         self.random_preference = max(
-            min(random_preference if random_preference is not None else np.random.normal(0.2, 0.1), 1), 0)
+            min(random_preference if random_preference is not None else np.random.normal(0.25, 0.1), 1), 0)
         self.random_preference = 0 if self.random_preference < 0 else self.random_preference
         self.random_preference = 1 if self.random_preference > 1 else self.random_preference
         self.attractiveness = self.calculate_attractiveness()
