@@ -48,7 +48,7 @@ class NetworkGenerator:
 
             for _ in range(agent_num_in_city):
                 agent_id += 1
-                agent = Agent(agent_id, code, total)
+                agent = Agent(agent_id, code)
                 self.agents.append(agent)
 
     # 生成关系
@@ -66,14 +66,15 @@ class NetworkGenerator:
             threshold_random = np.random.rand()
             threshold_mobility = np.random.rand()
             # 高移动性在所有城市中选择节点
-            to_agents = [agent for agent in self.agents if agent.id != node_a.id and
-                         (threshold_mobility < node_a.mobility or agent.city == node_a.city)]
+            others = [agent for agent in self.agents if agent.id != node_a.id]
+            to_agents = [agent for agent in others if
+                         threshold_mobility < node_a.mobility or agent.city == node_a.city]
             if not to_agents:
                 print("to_agents none")
             if threshold_random < node_a.random_preference:  # 高随机性按吸引力选择节点
-                node_b = preference_select(to_agents if to_agents else self.agents, "attractiveness", normalized=False)
+                node_b = preference_select(to_agents if to_agents else others, "attractiveness", normalized=False)
             else:
-                node_b = preference_select(to_agents if to_agents else self.agents, "priority_factor", normalized=True)
+                node_b = preference_select(to_agents if to_agents else others, "priority_factor", normalized=False)
             # 更新node_A的出度和node_B的入度
             # 检查边是否存在
             if not self.G.has_edge(node_a.id, node_b.id):
@@ -81,9 +82,7 @@ class NetworkGenerator:
                 node_a.out_degree += 1
                 node_b.in_degree += 1
                 # 更新节点B的优先因子 # todo 更新优先因子
-                pri_sum = sum(o.in_degree * o.attractiveness for o in self.agents)
-                for a in self.agents:
-                    a.priority_factor = a.in_degree * a.attractiveness / pri_sum
+                node_b.priority_factor = node_b.in_degree * node_b.attractiveness
                 self.G.add_edge(node_a.id, node_b.id, weight=1)
             else:
                 e = self.G[node_a.id][node_b.id]
