@@ -57,7 +57,7 @@ class NetworkGenerator:
         for agent in self.agents:
             self.G.add_node(agent.id, agent=agent)
         agents_candidate = {obj.id: obj for obj in self.agents}
-        while len(agents_candidate) > 0:
+        while agents_candidate:
             node_a = agents_candidate[random.choice(list(agents_candidate.keys()))]
             if node_a.out_degree >= node_a.max_out_bound:
                 agents_candidate.pop(node_a.id, None)
@@ -68,6 +68,8 @@ class NetworkGenerator:
             # 高移动性在所有城市中选择节点
             to_agents = [agent for agent in self.agents if agent.id != node_a.id and
                          (threshold_mobility < node_a.mobility or agent.city == node_a.city)]
+            if not to_agents:
+                print("to_agents none")
             if threshold_random < node_a.random_preference:  # 高随机性按吸引力选择节点
                 node_b = preference_select(to_agents if to_agents else self.agents, "attractiveness", normalized=False)
             else:
