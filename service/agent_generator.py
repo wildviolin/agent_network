@@ -59,7 +59,7 @@ class NetworkGenerator:
         agents_candidate = {obj.id: obj for obj in self.agents}
         while agents_candidate:
             node_a = agents_candidate[random.choice(list(agents_candidate.keys()))]
-            if node_a.out_degree >= min(node_a.max_out_bound,len(self.agents)-1):
+            if node_a.out_degree >= min(node_a.max_out_bound, len(self.agents) - 1):
                 agents_candidate.pop(node_a.id, None)
                 continue
 
@@ -74,7 +74,7 @@ class NetworkGenerator:
             if threshold_random < node_a.random_preference:  # 高随机性按吸引力选择节点
                 node_b = preference_select(to_agents if to_agents else others, "attractiveness", normalized=False)
             else:
-                node_b = preference_select(to_agents if to_agents else others, "priority_factor", normalized=False)
+                node_b = self.comprehensive_preference(to_agents if to_agents else others, node_a)
             # 更新node_A的出度和node_B的入度
             # 检查边是否存在
             if not self.G.has_edge(node_a.id, node_b.id):
@@ -91,6 +91,24 @@ class NetworkGenerator:
             if node_a.out_degree >= node_a.max_out_bound:
                 agents_candidate.pop(node_a.id, None)
                 continue
+
+    def comprehensive_preference(self, to_agents, from_agent):
+        total_attr = sum(o.in_degree + self.G[o.id].get(from_agent.id, {}).get('weight', 0)
+                         for o in to_agents)
+        if total_attr == 0:
+            return np.random.choice(to_agents)
+        bound = 0
+        seed = random.random()
+        node_to = None
+        for a in to_agents:
+            bound_next = (bound + (a.in_degree + self.G[a.id].get(from_agent.id, {}).get('weight', 0)) / total_attr)
+            if bound <= seed <= bound_next:
+                node_to = a
+                break
+            bound = bound_next
+        if node_to is None:
+            node_to = np.random.choice(to_agents)
+        return node_to
 
 
 networkGenerator = NetworkGenerator()

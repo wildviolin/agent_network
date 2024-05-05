@@ -8,10 +8,9 @@ class Agent:
         self.city = city_code
         self.age = age if age is not None else np.random.randint(15, 64)
         self.gender = gender if gender is not None else np.random.randint(2)  #1男0女
-        self.social_ability = social_ability if social_ability is not None else np.random.normal(0.5, 0.15)
-        self.social_ability = 0 if self.social_ability < 0 else self.social_ability
-        self.social_ability = 1 if self.social_ability > 1 else self.social_ability
-        self.max_out_bound = int(self.social_ability * 20)
+        self.social_ability = max(
+            min(social_ability if social_ability is not None else np.random.normal(0.5, 0.15), 1), 0)
+        self.max_out_bound = int(self.social_ability * 10)
 
         # 随机性偏好越低，越倾向于优先链接。越高越倾向于随机链接节点。
         self.random_preference = max(
