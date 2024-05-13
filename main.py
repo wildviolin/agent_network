@@ -1,10 +1,11 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
-from service.agent_generator import networkGenerator as netGen
+
+import service.agent_generator
 from repository.city_repository import cityRepository as cityRepo
+from model.agent import SocialNetwork
 import service.survey as sv
-import json
 
 
 def input_city_names():
@@ -22,9 +23,9 @@ def input_total_num():
     return total_agents
 
 
-def draw_network():
-    pos = nx.spring_layout(netGen.G, k=0.5, scale=5)
-    nx.draw(netGen.G,
+def draw_network(network: SocialNetwork):
+    pos = nx.spring_layout(network.get_relations(), k=0.5, scale=5)
+    nx.draw(network.get_relations(),
             pos=pos,
             with_labels=True,
             font_size=6,
@@ -35,10 +36,10 @@ def draw_network():
 
 
 # 生成入度直方图
-def draw_in_degree_histogram():
+def draw_in_degree_histogram(network: SocialNetwork):
     # 统计每个智能体的入度数
     in_degree_counts = {}
-    for agent in netGen.agents:
+    for agent in network.get_agents():
         if agent.in_degree in in_degree_counts:
             in_degree_counts[agent.in_degree] += 1
         else:
@@ -53,9 +54,9 @@ def draw_in_degree_histogram():
 
 
 # 排序生成入度直方图
-def draw_histogram_bins():
+def draw_histogram_bins(network: SocialNetwork):
     # 获取所有智能体的入度并排序
-    sorted_in_degrees = sorted([agent.in_degree for agent in netGen.agents], reverse=True)
+    sorted_in_degrees = sorted([agent.in_degree for agent in network.get_agents()], reverse=True)
     target_bins = input("请输入期望的组数")
     # 如果未指定target_bins，自动设置为列表长度的平方根作为起始初始值
     # 以获得较平均的分组
@@ -115,16 +116,12 @@ if __name__ == '__main__':
     cities = cityRepo.find_all() if len(input_cities) == 0 else cityRepo.find_by_city_names(input_cities)
     total = input_total_num()
 
-    netGen.init_agents(cities, total)
-    netGen.build_relations()
-    with open('data/question.json', 'r') as file:
-        # 读取文件内容并解析JSON数据
-        questions = json.load(file)
+    sn = service.agent_generator.init_social_network(cities, total)
+    service.agent_generator.build_relations(sn)
 
-
-    draw_network()
-    draw_in_degree_histogram()
-    draw_histogram_bins()
+    draw_network(sn)
+    draw_in_degree_histogram(sn)
+    draw_histogram_bins(sn)
 
 
 

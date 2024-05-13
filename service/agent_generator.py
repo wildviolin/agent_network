@@ -1,9 +1,6 @@
-from typing import List
-
-import networkx as nx
 import numpy as np
 import random
-from model.agent import Agent
+from model.agent import Agent, SocialNetwork
 
 
 def calculate_city_ratio(cities):
@@ -27,90 +24,72 @@ def preference_select(agents, attr_name, normalized=True):
     return node_to
 
 
-class NetworkGenerator:
-    def __init__(self):
-        self.agents: List[Agent] = []
-        self.G = nx.DiGraph()
+def init_social_network(cities, total):
+    sn = SocialNetwork()
+    # 城市比例系数
+    cities_portion = calculate_city_ratio(cities)
+    city_num = len(cities)
+    c = 0
+    n = 0
+    agent_num = 0
+    for code, pop in cities_portion.items():
+        c += 1
+        if c == city_num:
+            agent_num_in_city = total - n
+        else:
+            agent_num_in_city = int(total * pop)
+            n += agent_num_in_city
 
-    # 分配智能体
-    def init_agents(self, cities, total):
-        # 城市比例系数
-        cities_portion = calculate_city_ratio(cities)
-        city_num = len(cities)
-        c = 0
-        n = 0
-        agent_id = 0
-        for code, pop in cities_portion.items():
-            c += 1
-            if c == city_num:
-                agent_num_in_city = total - n
-            else:
-                agent_num_in_city = int(total * pop)
-                n += agent_num_in_city
-
-            for _ in range(agent_num_in_city):
-                agent_id += 1
-                agent = Agent(agent_id, code)
-                self.agents.append(agent)
-
-    # 生成关系
-    def build_relations(self):
-        # 添加节点
-        for agent in self.agents:
-            self.G.add_node(agent.id, agent=agent)
-        agents_candidate = {obj.id: obj for obj in self.agents}
-        while agents_candidate:
-            node_a = agents_candidate[random.choice(list(agents_candidate.keys()))]
-            if node_a.out_degree >= min(node_a.max_out_bound, len(self.agents) - 1):
-                agents_candidate.pop(node_a.id, None)
-                continue
-
-            threshold_random = np.random.rand()
-            threshold_mobility = np.random.rand()
-            # 高移动性在所有城市中选择节点
-            others = [agent for agent in self.agents if agent.id != node_a.id]
-            to_agents = [agent for agent in others if
-                         threshold_mobility < node_a.mobility or agent.city == node_a.city]
-            if not to_agents:
-                print("to_agents none")
-            if threshold_random < node_a.random_preference:  # 高随机性按吸引力选择节点
-                node_b = preference_select(to_agents if to_agents else others, "attractiveness", normalized=False)
-            else:
-                node_b = self.comprehensive_preference(to_agents if to_agents else others, node_a)
-            # 更新node_A的出度和node_B的入度
-            # 检查边是否存在
-            if not self.G.has_edge(node_a.id, node_b.id):
-                # 更新节点的出入度数
-                node_a.out_degree += 1
-                node_b.in_degree += 1
-                # 更新节点B的优先因子
-                node_b.priority_factor = node_b.in_degree
-                self.G.add_edge(node_a.id, node_b.id, weight=1)
-            else:
-                e = self.G[node_a.id][node_b.id]
-                e['weight'] += 1
-
-            if node_a.out_degree >= node_a.max_out_bound:
-                agents_candidate.pop(node_a.id, None)
-                continue
-
-    def comprehensive_preference(self, to_agents, from_agent):
-        total_attr = sum(o.in_degree + self.G[o.id].get(from_agent.id, {}).get('weight', 0)
-                         for o in to_agents)
-        if total_attr == 0:
-            return np.random.choice(to_agents)
-        bound = 0
-        seed = random.random()
-        node_to = None
-        for a in to_agents:
-            bound_next = (bound + (a.in_degree + self.G[a.id].get(from_agent.id, {}).get('weight', 0)) / total_attr)
-            if bound <= seed <= bound_next:
-                node_to = a
-                break
-            bound = bound_next
-        if node_to is None:
-            node_to = np.random.choice(to_agents)
-        return node_to
+        for _ in range(agent_num_in_city):
+            agent_num += 1
+            agent = Agent(label=str(agent_num), city_code=code)
+            sn.add_agent(agent)
+    return sn
 
 
-networkGenerator = NetworkGenerator()
+def build_relations(sn: SocialNetwork):
+    agents_candidate = {obj.id: obj for obj in sn.get_agents()}
+    while agents_candidate:
+        node_a = agents_candidate[random.choice(list(agents_candidate.keys()))]
+        if node_a.out_degree >= min(node_a.max_out_bound, len(sn.get_agents()) - 1):
+            agents_candidate.pop(node_a.id, None)
+            continue
+
+        threshold_random = np.random.rand()
+        threshold_mobility = np.random.rand()
+        # 高移动性在所有城市中选择节点
+        others = [agent for agent in sn.get_agents() if agent.id != node_a.id]
+        to_agents = [agent for agent in others if
+                     threshold_mobility < node_a.mobility or agent.city == node_a.city]
+        if not to_agents:
+            print("to_agents none")
+        if threshold_random < node_a.random_preference:  # 高随机性按吸引力选择节点
+            node_b = preference_select(to_agents if to_agents else others, "attractiveness", normalized=False)
+        else:
+            node_b = comprehensive_preference(sn, to_agents if to_agents else others, node_a)
+
+        sn.update_relation(node_a, node_b)
+
+        if node_a.out_degree >= node_a.max_out_bound:
+            agents_candidate.pop(node_a.id, None)
+            continue
+
+
+def comprehensive_preference(sn: SocialNetwork, to_agents, from_agent):
+    total_attr = sn.sum_in_weight_by_sources(from_agent, to_agents)
+    if total_attr == 0:
+        return np.random.choice(to_agents)
+    bound = 0
+    seed = random.random()
+    node_to = None
+    for a in to_agents:
+        bound_next = (bound + (
+                a.in_degree + sn.get_relation_weight_from_agents(a, from_agent)
+                ) / total_attr)
+        if bound <= seed <= bound_next:
+            node_to = a
+            break
+        bound = bound_next
+    if node_to is None:
+        node_to = np.random.choice(to_agents)
+    return node_to
