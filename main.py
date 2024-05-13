@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 import service.agent_generator
+import repository.agent_repository as ag_repo
 from repository.city_repository import cityRepository as cityRepo
 from model.agent import SocialNetwork
 import service.survey as sv
@@ -23,9 +24,9 @@ def input_total_num():
     return total_agents
 
 
-def draw_network(network: SocialNetwork):
-    pos = nx.spring_layout(network.get_relations(), k=0.5, scale=5)
-    nx.draw(network.get_relations(),
+def draw_network():
+    pos = nx.spring_layout(ag_repo.get_relations(), k=0.5, scale=5)
+    nx.draw(ag_repo.get_relations(),
             pos=pos,
             with_labels=True,
             font_size=6,
@@ -36,10 +37,10 @@ def draw_network(network: SocialNetwork):
 
 
 # 生成入度直方图
-def draw_in_degree_histogram(network: SocialNetwork):
+def draw_in_degree_histogram():
     # 统计每个智能体的入度数
     in_degree_counts = {}
-    for agent in network.get_agents():
+    for agent in ag_repo.get_agents():
         if agent.in_degree in in_degree_counts:
             in_degree_counts[agent.in_degree] += 1
         else:
@@ -54,9 +55,9 @@ def draw_in_degree_histogram(network: SocialNetwork):
 
 
 # 排序生成入度直方图
-def draw_histogram_bins(network: SocialNetwork):
+def draw_histogram_bins():
     # 获取所有智能体的入度并排序
-    sorted_in_degrees = sorted([agent.in_degree for agent in network.get_agents()], reverse=True)
+    sorted_in_degrees = sorted([agent.in_degree for agent in ag_repo.get_agents()], reverse=True)
     target_bins = input("请输入期望的组数")
     # 如果未指定target_bins，自动设置为列表长度的平方根作为起始初始值
     # 以获得较平均的分组
@@ -117,11 +118,11 @@ if __name__ == '__main__':
     total = input_total_num()
 
     sn = service.agent_generator.init_social_network(cities, total)
-    service.agent_generator.build_relations(sn)
+    service.agent_generator.build_relations()
 
-    draw_network(sn)
-    draw_in_degree_histogram(sn)
-    draw_histogram_bins(sn)
+    draw_network()
+    draw_in_degree_histogram()
+    draw_histogram_bins()
 
 
 
