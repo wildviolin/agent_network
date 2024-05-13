@@ -1,0 +1,107 @@
+[{
+	"id": "6600e06d23438604245ec4da",
+	"type": "SINGLE_SELECT",
+	"answerOptions":["optioinid"]
+}, {
+	"id": "6600e08523438604245ec4e4",
+	"type": "MULTI_SELECT",
+	"answerOptions":["optioinid","optioinid"]
+}, {
+	"id": "6600e0b423438604245ec4f5",
+	"type": "SCORE_SINGLE_SELECT",
+	"answerOptions":["optioinid"]
+}, {
+	"id": "6600e0ca23438604245ec501",
+	"type": "SCORE_MULTI_SELECT",
+	"answerOptions":["optioinid","optioinid"]
+}, {
+	"id": "6600e0e423438604245ec50e",
+	"type": "SINGLE_EVALUATION",
+	"answers":[{"optionId":"optioinid","score":3}]
+}, {
+	"id": "6600e11423438604245ec530",
+	"type": "MULTI_EVALUATION",
+	"answers":[{"optionId":"optioinid","score":3},{"optionId":"optioinid","score":3}]
+}, {
+	"id": "6600e14623438604245ec54c",
+	"type": "SCORE_SLIDE",
+	"answerScore":8
+}, {
+	"id": "6600e1cc23438604245ec59a",
+	"type": "DATE",
+	"answerDate": "2024-10-10"
+}, {
+	"id": "6600e1dd23438604245ec5a9",
+	"type": "DISTRICT_CN",
+	"answer": "cityCode"
+}, {
+	"id": "6600e22423438604245ec612",
+	"type": "MAX_DIFF",
+	"config": {
+		"required": true,
+		"maxDiffQuestion": {
+			"titles": [{
+				"id": "6600e22423438604245ec613",
+				"description": "最有影响"
+			}, {
+				"id": "6600e22423438604245ec614",
+				"description": "最没影响"
+			}],
+			"options": [{
+				"id": "6600e22423438604245ec615",
+				"description": "手机具有可展开的折叠屏"
+			}, {
+				"id": "6600e22423438604245ec616",
+				"description": "手机具备付费卫星通信功能"
+			}, {
+				"id": "6600e22423438604245ec617",
+				"description": "手机可以通过蓝牙控制智能电视"
+			}, {
+				"id": "6600e22423438604245ec618",
+				"description": "手机前置摄像头可升降隐藏"
+			}],
+			"taskNumber": 4,
+			"attributeNumber": 3
+		}
+	}
+}, {
+	"id": "6600e28f23438604245ec66d",
+	"subject": "<p>Kano-题目</p>",
+	"type": "KANO",
+	"answerPositive": 5,
+	"answerNegative": 3
+}, {
+	"id": "6600e43823438604245ec6a7",
+	"subject": "<p>联合分析-题目</p>",
+	"type": "JOINT_ANALYSIS",
+	"config": {
+		"required": true,
+		"jointAnalysisQuestion": {
+			"emptyTitle": "无",
+			"hasEmptyTitle": false,
+			"conceptualNumber": 2,
+			"taskNumber": 3,
+			"options": [{
+				"id": "6600e43823438604245ec6a8",
+				"title": "属性一",
+				"levelOptions": [{
+					"id": "6600e43823438604245ec6a9",
+					"title": "水平一"
+				}, {
+					"id": "6600e43823438604245ec6aa",
+					"title": "水平二"
+				}]
+			}, {
+				"id": "6600e43823438604245ec6ab",
+				"title": "属性二",
+				"levelOptions": [{
+					"id": "6600e43823438604245ec6ac",
+					"title": "水平一"
+				}, {
+					"id": "6600e43823438604245ec6ad",
+					"title": "水平二"
+				}]
+			}]
+		}
+	}
+}]

@@ -1,10 +1,12 @@
 import numpy as np
+import uuid
 
 
 class Agent:
     def __init__(self, agent_id, city_code, age=None, gender=None, social_ability=None,
                  random_preference=None):
         self.id = agent_id
+        self.uuid = str(uuid.uuid4()).replace('-', '')
         self.city = city_code
         self.age = age if age is not None else np.random.randint(15, 64)
         self.gender = gender if gender is not None else np.random.randint(2)  #1男0女

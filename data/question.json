@@ -1,0 +1,235 @@
+[{
+	"id": "6600e06d23438604245ec4da",
+	"subject": "<p>单选题-题目</p>",
+	"type": "SINGLE_SELECT",
+	"config": {
+		"required": true
+	},
+	"options": [{
+		"id": "6600e06d23438604245ec4db",
+		"title": "选项 1"
+	}, {
+		"id": "6600e06d23438604245ec4dc",
+		"title": "选项 2"
+	}]
+}, {
+	"id": "6600e08523438604245ec4e4",
+	"subject": "<p>多选题—题目</p>",
+	"type": "MULTI_SELECT",
+	"config": {
+		"required": true
+	},
+	"options": [{
+		"id": "6600e08523438604245ec4e5",
+		"title": "选项 1"
+	}, {
+		"id": "6600e08523438604245ec4e6",
+		"title": "选项 2"
+	}]
+}, {
+	"id": "6600e0b423438604245ec4f5",
+	"subject": "<p>单选打分题—题目</p>",
+	"type": "SCORE_SINGLE_SELECT",
+	"config": {
+		"required": true
+	},
+	"options": [{
+		"id": "6600e0b423438604245ec4f6",
+		"title": "选项 1",
+		"baseScore": 1.0
+	}, {
+		"id": "6600e0b423438604245ec4f7",
+		"title": "选项 2",
+		"baseScore": 2.0
+	}]
+}, {
+	"id": "6600e0ca23438604245ec501",
+	"subject": "<p>多选打分题-题目</p>",
+	"type": "SCORE_MULTI_SELECT",
+	"config": {
+		"required": true
+	},
+	"options": [{
+		"id": "6600e0ca23438604245ec502",
+		"title": "选项 1",
+		"baseScore": 1.0
+	}, {
+		"id": "6600e0ca23438604245ec503",
+		"title": "选项 2",
+		"baseScore": 2.0
+	}]
+}, {
+	"id": "6600e0e423438604245ec50e",
+	"subject": "<p>单项评价题—题目</p>",
+	"type": "SINGLE_EVALUATION",
+	"config": {
+		"required": true
+	},
+	"options": [{
+		"id": "6600e0e423438604245ec50f",
+		"title": "useless",
+		"baseScore": 5.0,
+		"leftWord": "非常不满意",
+		"rightWord": "非常满意"
+	}]
+}, {
+	"id": "6600e11423438604245ec530",
+	"subject": "<p>多项评价题—题目</p>",
+	"type": "MULTI_EVALUATION",
+	"config": {
+		"required": true
+	},
+	"options": [{
+		"id": "6600e11423438604245ec531",
+		"title": "打分项1",
+		"baseScore": 5.0,
+		"evaluateStyle": "star",
+		"leftWord": "非常不满意",
+		"rightWord": "非常满意"
+	}, {
+		"id": "6600e11423438604245ec532",
+		"title": "打分项2",
+		"baseScore": 5.0,
+		"evaluateStyle": "star",
+		"leftWord": "非常不满意",
+		"rightWord": "非常满意"
+	}]
+}, {
+	"id": "6600e14623438604245ec54c",
+	"subject": "<p>滑动打分题-题目</p>",
+	"type": "SCORE_SLIDE",
+	"config": {
+		"required": true,
+		"minMark": 1.0,
+		"maxMark": 10.0,
+		"minMarkLabel": "最低分",
+		"maxMarkLabel": "最高分"
+	}
+}, {
+	"id": "6600e16723438604245ec55b",
+	"subject": "<p>自动填空题-题目</p>",
+	"type": "AUTO_FILL",
+	"config": {
+		"required": true,
+		"presetAnswers": "答案一\n答案二",
+		"allowOtherAnswers": true
+	}
+}, {
+	"id": "6600e1cc23438604245ec59a",
+	"subject": "<p>日期题题目</p>",
+	"type": "DATE",
+	"config": {
+		"required": true
+	}
+}, {
+	"id": "6600e1dd23438604245ec5a9",
+	"subject": "<p>中国行政区-题目</p>",
+	"type": "DISTRICT_CN",
+	"config": {
+		"required": true,
+		"districtCnLevel": "DISTRICT"
+	}
+}, {
+	"id": "6600e1f923438604245ec5c3",
+	"subject": "<p>自动定位题-题目</p>",
+	"label": "自动定位题-简称",
+	"type": "LOCATION",
+	"config": {
+		"required": true,
+		"districtCnLevel": "PROVINCE"
+	}
+}, {
+	"id": "6600e21423438604245ec5f3",
+	"subject": "<p>地址题-题目</p>",
+	"type": "ADDRESS",
+	"config": {
+		"required": true
+	}
+}, {
+	"id": "6600e22423438604245ec612",
+	"subject": "<p>你认为在选购手机时，下列哪些因素最有影响，哪些最没影响</p>",
+	"type": "MAX_DIFF",
+	"config": {
+		"required": true,
+		"maxDiffQuestion": {
+			"positive": {"description":"最有影响","id": null},
+			"negative": {"description":"最没影响"},
+			"options": [{
+				"id": "6600e22423438604245ec615",
+				"description": "手机具有可展开的折叠屏"
+			}, {
+				"id": "6600e22423438604245ec616",
+				"description": "手机具备付费卫星通信功能"
+			}, {
+				"id": "6600e22423438604245ec617",
+				"description": "手机可以通过蓝牙控制智能电视"
+			}, {
+				"id": "6600e22423438604245ec618",
+				"description": "手机前置摄像头可升降隐藏"
+			}],
+			"taskNumber": 4,
+			"attributeNumber": 3
+		}
+	}
+}, {
+	"id": "6600e28f23438604245ec66d",
+	"subject": "<p>Kano-题目</p>",
+	"type": "KANO",
+	"config": {
+		"required": true,
+		"kanoQuestion": {
+			"positive": {"description":"如果有这个功能您的评价是","id": null},
+			"negative": {"description":"如果没有这个功能您的评价是"},
+			"options": [{
+				"description": "很喜欢",
+				"baseScore": 5.0
+			}, {
+				"description": "理所当然",
+				"baseScore": 4.0
+			}, {
+				"description": "无所谓",
+				"baseScore": 3.0
+			}, {
+				"description": "勉强接受",
+				"baseScore": 2.0
+			}, {
+				"description": "很不喜欢",
+				"baseScore": 1.0
+			}]
+		}
+	}
+}, {
+	"id": "6600e43823438604245ec6a7",
+	"subject": "<p>联合分析-题目</p>",
+	"type": "JOINT_ANALYSIS",
+	"config": {
+		"required": true,
+		"jointAnalysisQuestion": {
+			"chooseNothingLabel": "无",
+			"allowChooseNothing": false,
+			"conceptualNumber": 2,
+			"taskNumber": 3,
+			"options": [{
+				"id": "6600e43823438604245ec6a8",
+				"title": "汽车能源",
+				"levelOptions": [{
+					"id": "6600e43823438604245ec6a9",
+					"title": "电车"
+				}, {
+					"id": "6600e43823438604245ec6aa",
+					"title": "油车"
+				}]
+			}, {
+				"id": "6600e43823438604245ec6ab",
+				"title": "价格",
+				"levelOptions": [{
+					"id": "6600e43823438604245ec6ac",
+					"title": "20万"
+				}, {
+					"id": "6600e43823438604245ec6ad",
+					"title": "15万"
+				}]
+			}]
+		}
+	}
+}]

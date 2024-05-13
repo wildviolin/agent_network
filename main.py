@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from service.agent_generator import networkGenerator as netGen
 from repository.city_repository import cityRepository as cityRepo
+import service.survey as sv
+import json
 
 
 def input_city_names():
@@ -115,10 +117,17 @@ if __name__ == '__main__':
 
     netGen.init_agents(cities, total)
     netGen.build_relations()
+    with open('data/question.json', 'r') as file:
+        # 读取文件内容并解析JSON数据
+        questions = json.load(file)
+
 
     draw_network()
     draw_in_degree_histogram()
     draw_histogram_bins()
+
+
+
 
     # todo 画一个吸引力系数的直方图
     # todo 画一个移动力系数的直方图

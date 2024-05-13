@@ -1,3 +1,5 @@
+from typing import List
+
 import networkx as nx
 import numpy as np
 import random
@@ -27,7 +29,7 @@ def preference_select(agents, attr_name, normalized=True):
 
 class NetworkGenerator:
     def __init__(self):
-        self.agents = []
+        self.agents: List[Agent] = []
         self.G = nx.DiGraph()
 
     # 分配智能体
