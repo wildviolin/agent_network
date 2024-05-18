@@ -7,7 +7,7 @@ import repository.agent_repository as ag_repo
 import random
 import json
 
-with open(os.path.dirname(__file__) + '/../data/answer.json', 'r') as file:
+with open(os.path.dirname(__file__) + '/../data/answer.json', 'r', encoding='utf-8') as file:
     # 读取文件内容并解析JSON数据
     data = json.load(file)
     answers: List[Answer] = [Answer(**item) for item in data]
