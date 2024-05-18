@@ -36,36 +36,37 @@ class Agent:
 
 
 class SocialNetwork:
+
     def __init__(self):
         self.__agents: List[Agent] = []
-        self.__relations = DiGraph()
+        self.__graph = DiGraph()
 
     def add_agent(self, agent: Agent):
         self.__agents.append(agent)
-        self.__relations.add_node(agent.id, agent=agent)
+        self.__graph.add_node(agent.id, agent=agent)
 
     def get_agents(self) -> List[Agent]:
         return self.__agents
 
     def get_relations(self) -> DiGraph:
-        return self.__relations
+        return self.__graph
 
     def update_relation(self, source: Agent, target: Agent):
         # 更新node_from的出度和node_to的入度
         # 检查边是否存在
-        if not self.__relations.has_edge(source.id, target.id):
+        if not self.__graph.has_edge(source.id, target.id):
             # 更新节点的出入度数
             source.out_degree += 1
             target.in_degree += 1
             # 更新节点B的优先因子
             target.priority_factor = target.in_degree
-            self.__relations.add_edge(source.id, target.id, weight=1)
+            self.__graph.add_edge(source.id, target.id, weight=1)
         else:
-            e = self.__relations[source.id][target.id]
+            e = self.__graph[source.id][target.id]
             e['weight'] += 1
 
     def get_relation_weight_from_agents(self, source: Agent, target: Agent):
-        return self.__relations[source.id].get(target.id, {}).get('weight', 0)
+        return self.__graph[source.id].get(target.id, {}).get('weight', 0)
 
     def sum_in_weight_by_sources(self, target: Agent, sources: List[Agent]):
         # 计算源节点到某一目标节点的权重总和。

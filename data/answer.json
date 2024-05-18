@@ -1,41 +1,41 @@
 [{
-	"id": "6600e06d23438604245ec4da",
+	"questionId": "6600e06d23438604245ec4da",
 	"type": "SINGLE_SELECT",
 	"answerOptions":["optioinid"]
 }, {
-	"id": "6600e08523438604245ec4e4",
+	"questionId": "6600e08523438604245ec4e4",
 	"type": "MULTI_SELECT",
 	"answerOptions":["optioinid","optioinid"]
 }, {
-	"id": "6600e0b423438604245ec4f5",
+	"questionId": "6600e0b423438604245ec4f5",
 	"type": "SCORE_SINGLE_SELECT",
 	"answerOptions":["optioinid"]
 }, {
-	"id": "6600e0ca23438604245ec501",
+	"questionId": "6600e0ca23438604245ec501",
 	"type": "SCORE_MULTI_SELECT",
 	"answerOptions":["optioinid","optioinid"]
 }, {
-	"id": "6600e0e423438604245ec50e",
+	"questionId": "6600e0e423438604245ec50e",
 	"type": "SINGLE_EVALUATION",
 	"answers":[{"optionId":"optioinid","score":3}]
 }, {
-	"id": "6600e11423438604245ec530",
+	"questionId": "6600e11423438604245ec530",
 	"type": "MULTI_EVALUATION",
 	"answers":[{"optionId":"optioinid","score":3},{"optionId":"optioinid","score":3}]
 }, {
-	"id": "6600e14623438604245ec54c",
+	"questionId": "6600e14623438604245ec54c",
 	"type": "SCORE_SLIDE",
 	"answerScore":8
 }, {
-	"id": "6600e1cc23438604245ec59a",
+	"questionId": "6600e1cc23438604245ec59a",
 	"type": "DATE",
 	"answerDate": "2024-10-10"
 }, {
-	"id": "6600e1dd23438604245ec5a9",
+	"questionId": "6600e1dd23438604245ec5a9",
 	"type": "DISTRICT_CN",
 	"answer": "cityCode"
 }, {
-	"id": "6600e22423438604245ec612",
+	"questionId": "6600e22423438604245ec612",
 	"type": "MAX_DIFF",
 	"config": {
 		"required": true,
@@ -65,13 +65,13 @@
 		}
 	}
 }, {
-	"id": "6600e28f23438604245ec66d",
+	"questionId": "6600e28f23438604245ec66d",
 	"subject": "<p>Kano-题目</p>",
 	"type": "KANO",
 	"answerPositive": 5,
 	"answerNegative": 3
 }, {
-	"id": "6600e43823438604245ec6a7",
+	"questionId": "6600e43823438604245ec6a7",
 	"subject": "<p>联合分析-题目</p>",
 	"type": "JOINT_ANALYSIS",
 	"config": {

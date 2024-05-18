@@ -133,16 +133,16 @@ class Answer(BaseModel):
 
 
 class SurveyResult(BaseModel):
-    agentId: str
-    results: List[Answer]
+    agentId: str = None
+    results: List[Answer] = None
 
 
 if __name__ == '__main__':
     import json
 
-    with open('../data/question.json', 'r') as file:
+    with open('../data/answer.json', 'r') as file:
         # 读取文件内容并解析JSON数据
         data = json.load(file)
-    questions: List[Question] = [Question(**item) for item in data]
-    for data in questions:
+    answers: List[Answer] = [Answer(**item) for item in data]
+    for data in answers:
         print(data.json(exclude_none=True))

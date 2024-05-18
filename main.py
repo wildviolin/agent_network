@@ -1,3 +1,5 @@
+from typing import List
+
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
@@ -5,6 +7,8 @@ import numpy as np
 import service.agent_generator
 import repository.agent_repository as ag_repo
 from repository.city_repository import cityRepository as cityRepo
+from model.survey import Question, Answer
+import service.survey as ss
 from model.agent import SocialNetwork
 import service.survey as sv
 
@@ -124,8 +128,17 @@ if __name__ == '__main__':
     draw_in_degree_histogram()
     draw_histogram_bins()
 
+    import json
 
+    with open('data/question.json', 'r') as file:
+        # 读取文件内容并解析JSON数据
+        data = json.load(file)
+    questions: List[Question] = [Question(**item) for item in data]
 
+    results = ss.survey_simulate(questions)
+    jsondata = [item.dict() for item in results]
+    with open("data/answers.json", 'w', encoding='utf-8') as file:
+        json.dump(jsondata, file, ensure_ascii=False, indent=4)
 
     # todo 画一个吸引力系数的直方图
     # todo 画一个移动力系数的直方图

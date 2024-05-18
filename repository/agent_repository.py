@@ -25,3 +25,9 @@ def get_agents() -> List[Agent]:
 
 def get_relations() -> DiGraph:
     return dataStore.__socialNetwork.get_relations()
+
+
+def find_agent_by_id(agent_id: str) -> Agent:
+    return get_social_network().get_relations().nodes(agent_id).get("agent")
+
+
