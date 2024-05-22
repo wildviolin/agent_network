@@ -1,6 +1,6 @@
 import numpy as np
 import random
-from model.agent import Agent, SocialNetwork
+from model.agent import Agent
 import repository.agent_repository as ag_repo
 
 
@@ -43,23 +43,23 @@ def init_social_network(cities, total):
         for _ in range(agent_num_in_city):
             agent_num += 1
             agent = Agent(label=str(agent_num), city_code=code)
-            ag_repo.get_social_network().add_agent(agent)
+            ag_repo.add_agent(agent)
 
 
 def build_relations():
-    agents_candidate = {obj.id: obj for obj in ag_repo.get_agents()}
-    while agents_candidate: # fixme 会在此处卡死，全部城市，400节点，需要增加进度条
+    agents_candidate = ag_repo.all_agents_dict()
+    while agents_candidate:  # fixme 会在此处卡死，全部城市，400节点，需要增加进度条
         node_a = agents_candidate[random.choice(list(agents_candidate.keys()))]
-        if node_a.out_degree >= min(node_a.max_out_bound, len(ag_repo.get_agents()) - 1):
+        if ag_repo.agent_out_degree(node_a.id) >= min(node_a.attention_limit, ag_repo.count_agents() - 1):
             agents_candidate.pop(node_a.id, None)
             continue
 
         threshold_random = np.random.rand()
         threshold_mobility = np.random.rand()
         # 高移动性在所有城市中选择节点
-        others = [agent for agent in ag_repo.get_agents() if agent.id != node_a.id] # fixme 会在此处卡死
+        others = ag_repo.agents_exclude_one(node_a.id)  # fixme 会在此处卡死
         to_agents = [agent for agent in others if  # fixme 会在此处卡死
-                     threshold_mobility < node_a.mobility or agent.city == node_a.city]
+                     threshold_mobility < node_a.mobility or agent.city_code == node_a.city_code]
         if not to_agents:
             print("to_agents none")
         if threshold_random < node_a.random_preference:  # 高随机性按吸引力选择节点
@@ -67,15 +67,15 @@ def build_relations():
         else:
             node_b = comprehensive_preference(to_agents if to_agents else others, node_a)
 
-        ag_repo.get_social_network().update_relation(node_a, node_b)
+        ag_repo.update_relation(node_a, node_b)
 
-        if node_a.out_degree >= node_a.max_out_bound:
+        if ag_repo.agent_out_degree(node_a.id) >= node_a.attention_limit:
             agents_candidate.pop(node_a.id, None)
             continue
 
 
 def comprehensive_preference(to_agents, from_agent):
-    total_attr = ag_repo.get_social_network().sum_in_weight_by_sources(from_agent, to_agents)
+    total_attr = ag_repo.sum_in_weight_from_sources(from_agent, to_agents)
     if total_attr == 0:
         return np.random.choice(to_agents)
     bound = 0
@@ -83,8 +83,8 @@ def comprehensive_preference(to_agents, from_agent):
     node_to = None
     for a in to_agents:
         bound_next = (bound + (
-                a.in_degree + ag_repo.get_social_network().get_relation_weight_from_agents(a, from_agent)
-                ) / total_attr)
+                ag_repo.agent_in_degree(a.id) + ag_repo.relation_weight_by_agents(a, from_agent)
+        ) / total_attr)
         if bound <= seed <= bound_next:
             node_to = a
             break

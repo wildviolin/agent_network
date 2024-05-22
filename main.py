@@ -9,8 +9,6 @@ import repository.agent_repository as ag_repo
 from repository.city_repository import cityRepository as cityRepo
 from model.survey import Question, Answer
 import service.survey as ss
-from model.agent import SocialNetwork
-import service.survey as sv
 
 
 def input_city_names():
@@ -29,8 +27,8 @@ def input_total_num():
 
 
 def draw_network():
-    pos = nx.spring_layout(ag_repo.get_relations(), k=0.5, scale=5)
-    nx.draw(ag_repo.get_relations(),
+    pos = nx.spring_layout(ag_repo.get_social_network(), k=0.5, scale=5)
+    nx.draw(ag_repo.get_social_network(),
             pos=pos,
             with_labels=True,
             font_size=6,
@@ -44,11 +42,11 @@ def draw_network():
 def draw_in_degree_histogram():
     # 统计每个智能体的入度数
     in_degree_counts = {}
-    for agent in ag_repo.get_agents():
-        if agent.in_degree in in_degree_counts:
-            in_degree_counts[agent.in_degree] += 1
+    for agent in ag_repo.all_agents_list():
+        if ag_repo.agent_in_degree(agent.id) in in_degree_counts:
+            in_degree_counts[ag_repo.agent_in_degree(agent.id)] += 1
         else:
-            in_degree_counts[agent.in_degree] = 1
+            in_degree_counts[ag_repo.agent_in_degree(agent.id)] = 1
     # 绘制直方图
     plt.bar(in_degree_counts.keys(), in_degree_counts.values(), color='blue')
     plt.xlabel('In-Degree')
@@ -61,7 +59,7 @@ def draw_in_degree_histogram():
 # 排序生成入度直方图
 def draw_histogram_bins():
     # 获取所有智能体的入度并排序
-    sorted_in_degrees = sorted([agent.in_degree for agent in ag_repo.get_agents()], reverse=True)
+    sorted_in_degrees = sorted([ag_repo.agent_in_degree(agent.id) for agent in ag_repo.all_agents_list()], reverse=True)
     target_bins = input("请输入期望的组数")
     # 如果未指定target_bins，自动设置为列表长度的平方根作为起始初始值
     # 以获得较平均的分组
