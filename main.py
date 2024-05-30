@@ -118,7 +118,7 @@ def generate_out_degree_histogram(self):
 if __name__ == '__main__':
     input_cities = ["北京市"]  # input_city_names()
     cities = city_repo.find_all() if len(input_cities) == 0 else city_repo.find_by_city_names(input_cities)
-    total = 20000  # input_total_num()
+    total = 20  # input_total_num()
     start_time = time.time()
     sn = service.agent_generator.init_social_network(cities, total)
     end_time = time.time()
