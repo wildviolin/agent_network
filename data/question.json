@@ -1,235 +1,1301 @@
-[{
-	"id": "6600e06d23438604245ec4da",
-	"subject": "<p>单选题-题目</p>",
-	"type": "SINGLE_SELECT",
-	"config": {
-		"required": true
-	},
-	"options": [{
-		"id": "6600e06d23438604245ec4db",
-		"title": "选项 1"
-	}, {
-		"id": "6600e06d23438604245ec4dc",
-		"title": "选项 2"
-	}]
-}, {
-	"id": "6600e08523438604245ec4e4",
-	"subject": "<p>多选题—题目</p>",
-	"type": "MULTI_SELECT",
-	"config": {
-		"required": true
-	},
-	"options": [{
-		"id": "6600e08523438604245ec4e5",
-		"title": "选项 1"
-	}, {
-		"id": "6600e08523438604245ec4e6",
-		"title": "选项 2"
-	}]
-}, {
-	"id": "6600e0b423438604245ec4f5",
-	"subject": "<p>单选打分题—题目</p>",
-	"type": "SCORE_SINGLE_SELECT",
-	"config": {
-		"required": true
-	},
-	"options": [{
-		"id": "6600e0b423438604245ec4f6",
-		"title": "选项 1",
-		"baseScore": 1.0
-	}, {
-		"id": "6600e0b423438604245ec4f7",
-		"title": "选项 2",
-		"baseScore": 2.0
-	}]
-}, {
-	"id": "6600e0ca23438604245ec501",
-	"subject": "<p>多选打分题-题目</p>",
-	"type": "SCORE_MULTI_SELECT",
-	"config": {
-		"required": true
-	},
-	"options": [{
-		"id": "6600e0ca23438604245ec502",
-		"title": "选项 1",
-		"baseScore": 1.0
-	}, {
-		"id": "6600e0ca23438604245ec503",
-		"title": "选项 2",
-		"baseScore": 2.0
-	}]
-}, {
-	"id": "6600e0e423438604245ec50e",
-	"subject": "<p>单项评价题—题目</p>",
-	"type": "SINGLE_EVALUATION",
-	"config": {
-		"required": true
-	},
-	"options": [{
-		"id": "6600e0e423438604245ec50f",
-		"title": "useless",
-		"baseScore": 5.0,
-		"leftWord": "非常不满意",
-		"rightWord": "非常满意"
-	}]
-}, {
-	"id": "6600e11423438604245ec530",
-	"subject": "<p>多项评价题—题目</p>",
-	"type": "MULTI_EVALUATION",
-	"config": {
-		"required": true
-	},
-	"options": [{
-		"id": "6600e11423438604245ec531",
-		"title": "打分项1",
-		"baseScore": 5.0,
-		"evaluateStyle": "star",
-		"leftWord": "非常不满意",
-		"rightWord": "非常满意"
-	}, {
-		"id": "6600e11423438604245ec532",
-		"title": "打分项2",
-		"baseScore": 5.0,
-		"evaluateStyle": "star",
-		"leftWord": "非常不满意",
-		"rightWord": "非常满意"
-	}]
-}, {
-	"id": "6600e14623438604245ec54c",
-	"subject": "<p>滑动打分题-题目</p>",
-	"type": "SCORE_SLIDE",
-	"config": {
-		"required": true,
-		"minMark": 1.0,
-		"maxMark": 10.0,
-		"minMarkLabel": "最低分",
-		"maxMarkLabel": "最高分"
-	}
-}, {
-	"id": "6600e16723438604245ec55b",
-	"subject": "<p>自动填空题-题目</p>",
-	"type": "AUTO_FILL",
-	"config": {
-		"required": true,
-		"presetAnswers": "答案一\n答案二",
-		"allowOtherAnswers": true
-	}
-}, {
-	"id": "6600e1cc23438604245ec59a",
-	"subject": "<p>日期题题目</p>",
-	"type": "DATE",
-	"config": {
-		"required": true
-	}
-}, {
-	"id": "6600e1dd23438604245ec5a9",
-	"subject": "<p>中国行政区-题目</p>",
-	"type": "DISTRICT_CN",
-	"config": {
-		"required": true,
-		"districtCnLevel": "DISTRICT"
-	}
-}, {
-	"id": "6600e1f923438604245ec5c3",
-	"subject": "<p>自动定位题-题目</p>",
-	"label": "自动定位题-简称",
-	"type": "LOCATION",
-	"config": {
-		"required": true,
-		"districtCnLevel": "PROVINCE"
-	}
-}, {
-	"id": "6600e21423438604245ec5f3",
-	"subject": "<p>地址题-题目</p>",
-	"type": "ADDRESS",
-	"config": {
-		"required": true
-	}
-}, {
-	"id": "6600e22423438604245ec612",
-	"subject": "<p>你认为在选购手机时，下列哪些因素最有影响，哪些最没影响</p>",
-	"type": "MAX_DIFF",
-	"config": {
-		"required": true,
-		"maxDiffQuestion": {
-			"positive": {"description":"最有影响","id": null},
-			"negative": {"description":"最没影响"},
-			"options": [{
-				"id": "6600e22423438604245ec615",
-				"description": "手机具有可展开的折叠屏"
-			}, {
-				"id": "6600e22423438604245ec616",
-				"description": "手机具备付费卫星通信功能"
-			}, {
-				"id": "6600e22423438604245ec617",
-				"description": "手机可以通过蓝牙控制智能电视"
-			}, {
-				"id": "6600e22423438604245ec618",
-				"description": "手机前置摄像头可升降隐藏"
-			}],
-			"taskNumber": 4,
-			"attributeNumber": 3
-		}
-	}
-}, {
-	"id": "6600e28f23438604245ec66d",
-	"subject": "<p>Kano-题目</p>",
-	"type": "KANO",
-	"config": {
-		"required": true,
-		"kanoQuestion": {
-			"positive": {"description":"如果有这个功能您的评价是","id": null},
-			"negative": {"description":"如果没有这个功能您的评价是"},
-			"options": [{
-				"description": "很喜欢",
-				"baseScore": 5.0
-			}, {
-				"description": "理所当然",
-				"baseScore": 4.0
-			}, {
-				"description": "无所谓",
-				"baseScore": 3.0
-			}, {
-				"description": "勉强接受",
-				"baseScore": 2.0
-			}, {
-				"description": "很不喜欢",
-				"baseScore": 1.0
-			}]
-		}
-	}
-}, {
-	"id": "6600e43823438604245ec6a7",
-	"subject": "<p>联合分析-题目</p>",
-	"type": "JOINT_ANALYSIS",
-	"config": {
-		"required": true,
-		"jointAnalysisQuestion": {
-			"chooseNothingLabel": "无",
-			"allowChooseNothing": false,
-			"conceptualNumber": 2,
-			"taskNumber": 3,
-			"options": [{
-				"id": "6600e43823438604245ec6a8",
-				"title": "汽车能源",
-				"levelOptions": [{
-					"id": "6600e43823438604245ec6a9",
-					"title": "电车"
-				}, {
-					"id": "6600e43823438604245ec6aa",
-					"title": "油车"
-				}]
-			}, {
-				"id": "6600e43823438604245ec6ab",
-				"title": "价格",
-				"levelOptions": [{
-					"id": "6600e43823438604245ec6ac",
-					"title": "20万"
-				}, {
-					"id": "6600e43823438604245ec6ad",
-					"title": "15万"
-				}]
-			}]
-		}
-	}
-}]
+[
+        {
+            "id": "6657f394b10f00171ac3d90a",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p><span style=\"color: rgb(44, 44, 54); background-color: rgb(255, 255, 255); font-size: 16px;\">您的年龄段是？</span></p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "sc_cogugf",
+                    "alias": "图表显示的简称",
+                    "optionId": null,
+                    "type": null
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "SINGLE_SELECT",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [
+                {
+                    "id": "6657f394b10f00171ac3d90b",
+                    "title": "18岁以下",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f394b10f00171ac3d90c",
+                    "title": " 18-35岁",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f4df966b168ba3852d7f",
+                    "title": "36-60岁",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f4ed5ffdc4b98e42e23c",
+                    "title": " 60岁以上",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                }
+            ],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f51bb10f00171ac3d92c",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p>您每周用餐的平台都有哪些</p>",
+            "label": "平台",
+            "fields": [
+                {
+                    "name": "mc_4ltnqf_4fqazu",
+                    "alias": "平台_饿了么",
+                    "optionId": "6657f51bb10f00171ac3d92d",
+                    "type": null
+                },
+                {
+                    "name": "mc_4ltnqf_ewul3v",
+                    "alias": "平台_美团",
+                    "optionId": "6657f51bb10f00171ac3d92e",
+                    "type": null
+                },
+                {
+                    "name": "mc_4ltnqf_gdj108",
+                    "alias": "平台_麦乐送",
+                    "optionId": "6657f57d7c117b9ec90e13af",
+                    "type": null
+                },
+                {
+                    "name": "mc_4ltnqf_fmwria",
+                    "alias": "平台_宅急送",
+                    "optionId": "6657f58790bc5f17d3cf7876",
+                    "type": null
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "MULTI_SELECT",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [
+                {
+                    "id": "6657f51bb10f00171ac3d92d",
+                    "title": "饿了么",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f51bb10f00171ac3d92e",
+                    "title": "美团",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f57d7c117b9ec90e13af",
+                    "title": "麦乐送",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f58790bc5f17d3cf7876",
+                    "title": "宅急送",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                }
+            ],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f591b10f00171ac3d954",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p><span style=\"color: rgb(44, 44, 54); background-color: rgb(255, 255, 255); font-size: 16px;\">您的性别是？</span></p>",
+            "label": "图表显示的您的性别是？简称",
+            "fields": [
+                {
+                    "name": "sm_0fff3a",
+                    "alias": "图表显示的您的性别是？简称",
+                    "optionId": null,
+                    "type": null
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "SCORE_SINGLE_SELECT",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [
+                {
+                    "id": "6657f591b10f00171ac3d955",
+                    "title": "男",
+                    "baseScore": 1.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f591b10f00171ac3d956",
+                    "title": "女",
+                    "baseScore": 1.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                }
+            ],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f5c5b10f00171ac3d97a",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p>您平时都会做什么锻炼</p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "mm_oyie06_hnh0sp",
+                    "alias": "图表显示的简称_跑步",
+                    "optionId": "6657f5c5b10f00171ac3d97b",
+                    "type": null
+                },
+                {
+                    "name": "mm_oyie06_wv9ghg",
+                    "alias": "图表显示的简称_羽毛球",
+                    "optionId": "6657f5c5b10f00171ac3d97c",
+                    "type": null
+                },
+                {
+                    "name": "mm_oyie06_xds645",
+                    "alias": "图表显示的简称_乒乓球",
+                    "optionId": "6657f6314f3038025cdc544e",
+                    "type": null
+                },
+                {
+                    "name": "mm_oyie06_vuukn5",
+                    "alias": "图表显示的简称_瑜伽",
+                    "optionId": "6657f63a5d562e55b43d54a7",
+                    "type": null
+                },
+                {
+                    "name": "mm_oyie06_i5fs6v",
+                    "alias": "图表显示的简称_静卧",
+                    "optionId": "6657f640a0a437ed422d5a74",
+                    "type": null
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "SCORE_MULTI_SELECT",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [
+                {
+                    "id": "6657f5c5b10f00171ac3d97b",
+                    "title": "跑步",
+                    "baseScore": 1.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f5c5b10f00171ac3d97c",
+                    "title": "羽毛球",
+                    "baseScore": 1.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f6314f3038025cdc544e",
+                    "title": "乒乓球",
+                    "baseScore": 1.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f63a5d562e55b43d54a7",
+                    "title": "瑜伽",
+                    "baseScore": 1.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f640a0a437ed422d5a74",
+                    "title": "静卧",
+                    "baseScore": 1.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                }
+            ],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f652b10f00171ac3d9df",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p><span style=\"color: rgb(44, 44, 54); background-color: rgb(255, 255, 255); font-size: 16px;\">您认为自己的整体健康状况如何？</span></p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "se_lcny23",
+                    "alias": "图表显示的简称",
+                    "optionId": null,
+                    "type": null
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "SINGLE_EVALUATION",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [
+                {
+                    "id": "6657f652b10f00171ac3d9e0",
+                    "title": "useless",
+                    "baseScore": 5.0,
+                    "evaluateStyle": "smile",
+                    "leftWord": "非常不棒",
+                    "rightWord": "非常棒",
+                    "quoteQstId": null,
+                    "quoteItem": null
+                }
+            ],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f6aab10f00171ac3da06",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p>您认为你现在用餐平台满意度打几分</p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "me_givsc9_dw6e41",
+                    "alias": "图表显示的简称_饿了么",
+                    "optionId": "6657f6aab10f00171ac3da07",
+                    "type": null
+                },
+                {
+                    "name": "me_givsc9_hw7ppx",
+                    "alias": "图表显示的简称_美团",
+                    "optionId": "6657f6aab10f00171ac3da08",
+                    "type": null
+                },
+                {
+                    "name": "me_givsc9_1whivz",
+                    "alias": "图表显示的简称_宅急送",
+                    "optionId": "6657f70d1866318e691caaef",
+                    "type": null
+                },
+                {
+                    "name": "me_givsc9_1cjwh1",
+                    "alias": "图表显示的简称_麦乐送",
+                    "optionId": "6657f7170329c47fbba3ad2c",
+                    "type": null
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "MULTI_EVALUATION",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [
+                {
+                    "id": "6657f6aab10f00171ac3da07",
+                    "title": "饿了么",
+                    "baseScore": 5.0,
+                    "evaluateStyle": "star",
+                    "leftWord": "非常不满意",
+                    "rightWord": "非常满意",
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f6aab10f00171ac3da08",
+                    "title": "美团",
+                    "baseScore": 5.0,
+                    "evaluateStyle": "star",
+                    "leftWord": "非常不满意",
+                    "rightWord": "非常满意",
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f70d1866318e691caaef",
+                    "title": "宅急送",
+                    "baseScore": 5.0,
+                    "evaluateStyle": "star",
+                    "leftWord": "非常不满意",
+                    "rightWord": "非常满意",
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f7170329c47fbba3ad2c",
+                    "title": "麦乐送",
+                    "baseScore": 5.0,
+                    "evaluateStyle": "star",
+                    "leftWord": "非常不满意",
+                    "rightWord": "非常满意",
+                    "quoteQstId": null,
+                    "quoteItem": null
+                }
+            ],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f74eb10f00171ac3daa8",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p><span style=\"color: rgb(51, 62, 72); background-color: rgb(255, 255, 255); font-size: 16px;\">您觉得外卖员送餐的穿戴以及餐品是否整洁？</span></p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "sl_yw9cf1",
+                    "alias": "图表显示的简称",
+                    "optionId": null,
+                    "type": null
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "SCORE_SLIDE",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": 1.0,
+                "maxMark": 10.0,
+                "minMarkLabel": "最低分",
+                "maxMarkLabel": "最高分",
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f7a8b10f00171ac3daac",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p>您觉得在炎热的夏天应该多食什么？</p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "af_ww0twx",
+                    "alias": "图表显示的简称",
+                    "optionId": null,
+                    "type": null
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "AUTO_FILL",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": "冰激凌\n冰西瓜\n冰奶茶\n冰可乐",
+                "allowOtherAnswers": true,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f7f5b10f00171ac3daec",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p>您觉得现在的AI智能能带给我们什么？</p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "tx_5z9y08",
+                    "alias": "图表显示的简称",
+                    "optionId": null,
+                    "type": null
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "TEXT",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f86fb10f00171ac3daf0",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p>请您选择一下端午节是什么时候？</p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "ds_6gh5eo",
+                    "alias": "图表显示的简称",
+                    "optionId": null,
+                    "type": null
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "DATE",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f8a0b10f00171ac3daf4",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p>您知道“很机车诶”是哪里的方言吗？</p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "dst_98ere6_province",
+                    "alias": "图表显示的简称_省",
+                    "optionId": null,
+                    "type": "PROVINCE"
+                },
+                {
+                    "name": "dst_98ere6_city",
+                    "alias": "图表显示的简称_市",
+                    "optionId": null,
+                    "type": "CITY"
+                },
+                {
+                    "name": "dst_98ere6_district",
+                    "alias": "图表显示的简称_区",
+                    "optionId": null,
+                    "type": "DISTRICT"
+                },
+                {
+                    "name": "dst_98ere6_town",
+                    "alias": "图表显示的简称_乡镇/街道",
+                    "optionId": null,
+                    "type": "TOWN"
+                },
+                {
+                    "name": "dst_98ere6_province_code",
+                    "alias": "图表显示的简称_省代码",
+                    "optionId": null,
+                    "type": "PROVINCE_CODE"
+                },
+                {
+                    "name": "dst_98ere6_city_code",
+                    "alias": "图表显示的简称_市代码",
+                    "optionId": null,
+                    "type": "CITY_CODE"
+                },
+                {
+                    "name": "dst_98ere6_district_code",
+                    "alias": "图表显示的简称_区代码",
+                    "optionId": null,
+                    "type": "DISTRICT_CODE"
+                },
+                {
+                    "name": "dst_98ere6_town_code",
+                    "alias": "图表显示的简称_乡镇/街道代码",
+                    "optionId": null,
+                    "type": "TOWN_CODE"
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "DISTRICT_CN",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": "CITY"
+            },
+            "options": [
+                {
+                    "id": "6657f8a0b10f00171ac3daf5",
+                    "title": "选项 1",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f8a0b10f00171ac3daf6",
+                    "title": "选项 2",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                }
+            ],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f8c6b10f00171ac3db01",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p>您现在上班的地方是哪里？</p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "lo_aj052b_wgs84lat",
+                    "alias": "图表显示的简称_纬度",
+                    "optionId": null,
+                    "type": "LAT"
+                },
+                {
+                    "name": "lo_aj052b_wgs84long",
+                    "alias": "图表显示的简称_经度",
+                    "optionId": null,
+                    "type": "LONG"
+                },
+                {
+                    "name": "lo_aj052b_country",
+                    "alias": "图表显示的简称_国家",
+                    "optionId": null,
+                    "type": "COUNTRY"
+                },
+                {
+                    "name": "lo_aj052b_country_code3",
+                    "alias": "图表显示的简称_国家iso3",
+                    "optionId": null,
+                    "type": "COUNTRY_CODE3"
+                },
+                {
+                    "name": "lo_aj052b_country_code2",
+                    "alias": "图表显示的简称_国家iso2",
+                    "optionId": null,
+                    "type": "COUNTRY_CODE2"
+                },
+                {
+                    "name": "lo_aj052b_province",
+                    "alias": "图表显示的简称_省",
+                    "optionId": null,
+                    "type": "PROVINCE"
+                },
+                {
+                    "name": "lo_aj052b_city",
+                    "alias": "图表显示的简称_市",
+                    "optionId": null,
+                    "type": "CITY"
+                },
+                {
+                    "name": "lo_aj052b_district",
+                    "alias": "图表显示的简称_区",
+                    "optionId": null,
+                    "type": "DISTRICT"
+                },
+                {
+                    "name": "lo_aj052b_province_code",
+                    "alias": "图表显示的简称_省代码",
+                    "optionId": null,
+                    "type": "PROVINCE_CODE"
+                },
+                {
+                    "name": "lo_aj052b_city_code",
+                    "alias": "图表显示的简称_市代码",
+                    "optionId": null,
+                    "type": "CITY_CODE"
+                },
+                {
+                    "name": "lo_aj052b_district_code",
+                    "alias": "图表显示的简称_区代码",
+                    "optionId": null,
+                    "type": "DISTRICT_CODE"
+                },
+                {
+                    "name": "lo_aj052b_street",
+                    "alias": "图表显示的简称_街道",
+                    "optionId": null,
+                    "type": "STREET"
+                },
+                {
+                    "name": "lo_aj052b_street_number",
+                    "alias": "图表显示的简称_街道门牌号",
+                    "optionId": null,
+                    "type": "STREET_NUMBER"
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "LOCATION",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [
+                {
+                    "id": "6657f8c6b10f00171ac3db02",
+                    "title": "选项 1",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f8c6b10f00171ac3db03",
+                    "title": "选项 2",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                }
+            ],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f8dbb10f00171ac3db13",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p>您知道北京的络捷斯特在哪里吗</p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "ad_8slqvu_detail",
+                    "alias": "图表显示的简称_地址",
+                    "optionId": null,
+                    "type": "ADDRESS"
+                },
+                {
+                    "name": "ad_8slqvu_province",
+                    "alias": "图表显示的简称_省",
+                    "optionId": null,
+                    "type": "PROVINCE"
+                },
+                {
+                    "name": "ad_8slqvu_city",
+                    "alias": "图表显示的简称_市",
+                    "optionId": null,
+                    "type": "CITY"
+                },
+                {
+                    "name": "ad_8slqvu_district",
+                    "alias": "图表显示的简称_区",
+                    "optionId": null,
+                    "type": "DISTRICT"
+                },
+                {
+                    "name": "ad_8slqvu_province_code",
+                    "alias": "图表显示的简称_省代码",
+                    "optionId": null,
+                    "type": "PROVINCE_CODE"
+                },
+                {
+                    "name": "ad_8slqvu_city_code",
+                    "alias": "图表显示的简称_市代码",
+                    "optionId": null,
+                    "type": "CITY_CODE"
+                },
+                {
+                    "name": "ad_8slqvu_district_code",
+                    "alias": "图表显示的简称_区代码",
+                    "optionId": null,
+                    "type": "DISTRICT_CODE"
+                },
+                {
+                    "name": "ad_8slqvu_wgs84lat",
+                    "alias": "图表显示的简称_纬度",
+                    "optionId": null,
+                    "type": "LAT"
+                },
+                {
+                    "name": "ad_8slqvu_wgs84long",
+                    "alias": "图表显示的简称_经度",
+                    "optionId": null,
+                    "type": "LONG"
+                }
+            ],
+            "biasAPPTable": null,
+            "type": "ADDRESS",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [
+                {
+                    "id": "6657f8dbb10f00171ac3db14",
+                    "title": "选项 1",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                },
+                {
+                    "id": "6657f8dbb10f00171ac3db15",
+                    "title": "选项 2",
+                    "baseScore": 0.0,
+                    "evaluateStyle": null,
+                    "leftWord": null,
+                    "rightWord": null,
+                    "quoteQstId": null,
+                    "quoteItem": null
+                }
+            ],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f8f2b10f00171ac3db21",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p>你认为在选购手机时，下列哪些因素最有影响，哪些最没影响</p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "md_awq1hi",
+                    "alias": "最有影响",
+                    "optionId": "6657f8f2b10f00171ac3db22",
+                    "type": null
+                },
+                {
+                    "name": "md_jrt0gz",
+                    "alias": "最没影响",
+                    "optionId": "6657f8f2b10f00171ac3db23",
+                    "type": null
+                }
+            ],
+            "biasAPPTable": {
+                "tableName": "result_md_oavm50",
+                "biasTableId": 1124
+            },
+            "type": "MAX_DIFF",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": {
+                    "titles": [
+                        {
+                            "id": "6657f8f2b10f00171ac3db22",
+                            "description": "最有影响"
+                        },
+                        {
+                            "id": "6657f8f2b10f00171ac3db23",
+                            "description": "最没影响"
+                        }
+                    ],
+                    "positive": {
+                        "id": "6657f8f2b10f00171ac3db22",
+                        "description": "最有影响"
+                    },
+                    "negative": {
+                        "id": "6657f8f2b10f00171ac3db23",
+                        "description": "最没影响"
+                    },
+                    "options": [
+                        {
+                            "id": "6657f8f2b10f00171ac3db24",
+                            "description": "手机具有可展开的折叠屏"
+                        },
+                        {
+                            "id": "6657f8f2b10f00171ac3db25",
+                            "description": "手机具备付费卫星通信功能"
+                        },
+                        {
+                            "id": "6657f8f2b10f00171ac3db26",
+                            "description": "手机可以通过蓝牙控制智能电视"
+                        },
+                        {
+                            "id": "6657f8f2b10f00171ac3db27",
+                            "description": "手机前置摄像头可升降隐藏"
+                        }
+                    ],
+                    "taskNumber": 3,
+                    "attributeNumber": 3
+                },
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f90eb10f00171ac3db2b",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p>如果华为新出一部智能手机，并且该手机可以3D打印</p>",
+            "label": "图表显示的简称",
+            "fields": [],
+            "biasAPPTable": null,
+            "type": "KANO",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": {
+                    "titles": [
+                        {
+                            "id": "6657f90eb10f00171ac3db2c",
+                            "title": null,
+                            "description": "如果没有这个功能您的评价是",
+                            "type": null
+                        },
+                        {
+                            "id": "6657f90eb10f00171ac3db2d",
+                            "title": null,
+                            "description": "如果有这个功能您的评价是",
+                            "type": null
+                        }
+                    ],
+                    "positive": {
+                        "id": "6657f90eb10f00171ac3db2c",
+                        "title": null,
+                        "description": "如果没有这个功能您的评价是",
+                        "type": null
+                    },
+                    "negative": {
+                        "id": "6657f90eb10f00171ac3db2d",
+                        "title": null,
+                        "description": "如果有这个功能您的评价是",
+                        "type": null
+                    },
+                    "options": [
+                        {
+                            "description": "很喜欢",
+                            "baseScore": 5.0
+                        },
+                        {
+                            "description": "理所当然",
+                            "baseScore": 4.0
+                        },
+                        {
+                            "description": "无所谓",
+                            "baseScore": 3.0
+                        },
+                        {
+                            "description": "勉强接受",
+                            "baseScore": 2.0
+                        },
+                        {
+                            "description": "很不喜欢",
+                            "baseScore": 1.0
+                        }
+                    ]
+                },
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": null,
+                "districtCnLevel": null
+            },
+            "options": [],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        },
+        {
+            "id": "6657f9a6b10f00171ac3db33",
+            "createdDate": null,
+            "lastModifiedDate": null,
+            "createdBy": null,
+            "lastModifiedBy": null,
+            "holderId": "XSqMsgVtHUxvo4CZqYc",
+            "creator": null,
+            "subject": "<p>您选车的意向是什么？</p>",
+            "label": "图表显示的简称",
+            "fields": [
+                {
+                    "name": "ja_mgyrwp",
+                    "alias": "汽车能源",
+                    "optionId": "6657f9a6b10f00171ac3db34",
+                    "type": null
+                },
+                {
+                    "name": "ja_0pehqy",
+                    "alias": "价格",
+                    "optionId": "6657f9a6b10f00171ac3db37",
+                    "type": null
+                },
+                {
+                    "name": "ja_0ncbxv",
+                    "alias": "驾驶",
+                    "optionId": "6658121f4931f62ee8b74342",
+                    "type": null
+                }
+            ],
+            "biasAPPTable": {
+                "tableName": "result_ja_pt5l46",
+                "biasTableId": 1125
+            },
+            "type": "JOINT_ANALYSIS",
+            "config": {
+                "required": true,
+                "allNot": null,
+                "minMark": null,
+                "maxMark": null,
+                "minMarkLabel": null,
+                "maxMarkLabel": null,
+                "presetAnswers": null,
+                "allowOtherAnswers": null,
+                "kanoQuestion": null,
+                "maxDiffQuestion": null,
+                "jointAnalysisQuestion": {
+                    "emptyTitle": "无",
+                    "hasEmptyTitle": false,
+                    "chooseNothingLabel": "无",
+                    "allowChooseNothing": false,
+                    "conceptualNumber": 2,
+                    "taskNumber": 3,
+                    "options": [
+                        {
+                            "id": "6657f9a6b10f00171ac3db34",
+                            "title": "汽车能源",
+                            "levelOptions": [
+                                {
+                                    "id": "6657f9a6b10f00171ac3db35",
+                                    "title": "电车"
+                                },
+                                {
+                                    "id": "6657f9a6b10f00171ac3db36",
+                                    "title": "油车"
+                                },
+                                {
+                                    "id": "66581452f8a7dead4d7aad29",
+                                    "title": "混动"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "6658121f4931f62ee8b74342",
+                            "title": "驾驶",
+                            "levelOptions": [
+                                {
+                                    "id": "6658121f392e83b8db45c934",
+                                    "title": "自动驾驶"
+                                },
+                                {
+                                    "id": "6658121fff4bc00c3de4e5aa",
+                                    "title": "人工驾驶"
+                                },
+                                {
+                                    "id": "665814c02cf03175054bf6de",
+                                    "title": "人机结合"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "6657f9a6b10f00171ac3db37",
+                            "title": "价格",
+                            "levelOptions": [
+                                {
+                                    "id": "6657f9a6b10f00171ac3db38",
+                                    "title": "10万以下"
+                                },
+                                {
+                                    "id": "6657f9a6b10f00171ac3db39",
+                                    "title": "10~20万"
+                                },
+                                {
+                                    "id": "6658143f41844da0000f8935",
+                                    "title": "20万以上"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "districtCnLevel": null
+            },
+            "options": [],
+            "answer": null,
+            "text": null,
+            "value": null,
+            "tableColumns": []
+        }
+    ]

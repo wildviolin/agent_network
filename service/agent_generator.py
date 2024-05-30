@@ -9,7 +9,7 @@ def calculate_city_ratio(cities):
     return {k: v for k, v in zip(cities['code'], cities['population'] / sum_population)}
 
 
-def preference_select(agents, attr_name, normalized=True):
+def preference_select(agents, attr_name, normalized=True) -> Agent:
     total_attr = 1 if normalized else sum(getattr(o, attr_name) for o in agents)
     bound = 0
     seed = random.random()
@@ -74,21 +74,14 @@ def build_relations():
             continue
 
 
-def comprehensive_preference(to_agents, from_agent):
+def comprehensive_preference(to_agents, from_agent) -> Agent:
     total_attr = ag_repo.sum_in_weight_from_sources(from_agent, to_agents)
     if total_attr == 0:
         return np.random.choice(to_agents)
-    bound = 0
-    seed = random.random()
-    node_to = None
-    for a in to_agents:
-        bound_next = (bound + (
-                ag_repo.agent_in_degree(a.id) + ag_repo.relation_weight_by_agents(a, from_agent)
-        ) / total_attr)
-        if bound <= seed <= bound_next:
-            node_to = a
-            break
-        bound = bound_next
+
+    weights = [ag_repo.agent_in_degree(a.id) + ag_repo.relation_weight_by_agents(a, from_agent) for a in to_agents]
+    node_to = random.choices(to_agents, weights=weights, k=1)[0]
+
     if node_to is None:
         node_to = np.random.choice(to_agents)
     return node_to

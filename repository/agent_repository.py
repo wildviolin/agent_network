@@ -5,14 +5,9 @@ from networkx import DiGraph
 from model.agent import Agent
 from repository.local import ThreadLocalDataStore
 
-dataStore = ThreadLocalDataStore()
-
-if not hasattr(dataStore, '__socialNetwork'):
-    dataStore.__socialNetwork = DiGraph()
-
 
 def get_social_network() -> DiGraph:
-    return dataStore.__socialNetwork
+    return ThreadLocalDataStore().get_social_network()
 
 
 def add_agent(agent: Agent):
@@ -25,6 +20,10 @@ def all_agents_list() -> List[Agent]:
 
 def all_agents_dict() -> Dict[str, Agent]:
     return {node: data['agent'] for node, data in get_social_network().nodes(data=True)}
+
+
+def agent_by_id(agent_id: str) -> Agent:
+    return get_social_network()[agent_id]['agent']
 
 
 def count_agents() -> int:
@@ -58,7 +57,11 @@ def update_relation(source: Agent, target: Agent):
 
 
 def relation_weight_by_agents(source: Agent, target: Agent):
-    return get_social_network()[source.id].get(target.id, {}).get('weight', 0)
+    return relation_weight_by_agent_ids(source.id, target.id)
+
+
+def relation_weight_by_agent_ids(source: str, target: str):
+    return get_social_network()[source].get(target, {}).get('weight', 0)
 
 
 def sum_in_weight_from_sources(target: Agent, sources: List[Agent]):

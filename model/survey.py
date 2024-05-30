@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List
 from enum import Enum
 
@@ -19,10 +19,12 @@ class Type(Enum):
     MAX_DIFF = "MAX_DIFF"
     KANO = "KANO"
     JOINT_ANALYSIS = "JOINT_ANALYSIS"
+    TEXT = "TEXT"
 
 
 class Question(BaseModel):
     class Config:
+        allow_population_by_field_name = True
         json_encoders = {
             Type: lambda t: t.value,
         }
@@ -50,8 +52,8 @@ class Question(BaseModel):
                 id: str = None
                 description: str
 
-            taskNumber: int
-            attributeNumber: int
+            task_number: int = Field(..., alias='taskNumber')
+            attribute_number: int = Field(..., alias='attributeNumber')
             positive: Title
             negative: Title
             options: List[Option]
@@ -65,32 +67,32 @@ class Question(BaseModel):
                     id: str = None
                     title: str
 
-                levelOptions: List[LevelOption]
+                level_options: List[LevelOption] = Field(..., alias='levelOptions')
 
-            chooseNothingLabel: str = None
-            allowChooseNothing: bool
-            conceptualNumber: int
-            taskNumber: int
+            choose_nothing_label: str = Field(default=None, alias='chooseNothingLabel')
+            allow_choose_nothing: bool = Field(..., alias='allowChooseNothing')
+            conceptual_number: int = Field(..., alias='conceptualNumber')
+            task_number: int = Field(..., alias='taskNumber')
             options: List[Option]
 
         required: bool = None
-        minMark: int = None
-        maxMark: int = None
-        minMarkLabel: str = None
-        maxMarkLabel: str = None
-        presentAnswers: str = None
-        allowOtherAnswers: bool = None
-        districtCnLevel: str = None
-        kanoQuestion: KanoQuestion = None
-        maxDiffQuestion: MaxDiffQuestion = None
-        jointAnalysisQuestion: JointAnalysisQuestion = None
+        min_mark: int = Field(default=None, alias='minMark')
+        max_mark: int = Field(default=None, alias='maxMark')
+        min_mark_label: str = Field(default=None, alias='minMarkLabel')
+        max_mark_label: str = Field(default=None, alias='maxMarkLabel')
+        preset_answers: str = Field(default=None, alias='presetAnswers')
+        allow_other_answers: bool = Field(default=None, alias='allowOtherAnswers')
+        district_cn_level: str = Field(default=None, alias='districtCnLevel')
+        kano_question: KanoQuestion = Field(default=None, alias='kanoQuestion')
+        max_diff_question: MaxDiffQuestion = Field(default=None, alias='maxDiffQuestion')
+        joint_analysis_question: JointAnalysisQuestion = Field(default=None, alias='jointAnalysisQuestion')
 
     class Option(BaseModel):
         id: str
         title: str = None
-        baseScore: int = None
-        leftWord: str = None
-        rightWord: str = None
+        base_score: int = Field(default=None, alias='baseScore')
+        left_word: str = Field(default=None, alias='leftWord')
+        right_word: str = Field(default=None, alias='rightWord')
 
     id: str
     subject: str = None
@@ -101,12 +103,12 @@ class Question(BaseModel):
 
 class Answer(BaseModel):
     class Answer(BaseModel):
-        optionId: str
+        option_id: str = Field(..., alias='optionId')
         score: int
 
     class AnswerKano(BaseModel):
-        positiveScore: int
-        negativeScore: int
+        positive_score: int = Field(..., alias='positiveScore')
+        negative_score: int = Field(..., alias='negativeScore')
 
     class AnswerMaxDiff(BaseModel):
         task: int
@@ -116,33 +118,50 @@ class Answer(BaseModel):
 
     class AnswerJointAnalysis(BaseModel):
         class Attribute(BaseModel):
-            optionId: str
+            option_id: str = Field(..., alias='optionId')
             level: str
+
+            def __eq__(self, other):
+                if isinstance(other, Answer.AnswerJointAnalysis.Attribute):
+                    return self.option_id == other.option_id and self.level == other.level
+                return False
+
+            def __hash__(self):
+                return hash(self.option_id + self.level)
+
         task: int
         attributes: List[Attribute]
         select: bool = None
 
-    questionId: str
-    answerOptions: List[str] = None
+    question_id: str = Field(..., alias='questionId')
+    answer_options: List[str] = Field(default=None, alias='answerOptions')
     answers: List[Answer] = None
-    answerScore: int = None
-    answerDate: str = None
-    answerKano: AnswerKano = None
-    answerMaxDiff: List[AnswerMaxDiff] = None
-    answerJointAnalysis: List[AnswerJointAnalysis] = None
+    answer_auto_fill: str = Field(default=None, alias='answerAutoFill')
+    answer_score: int = Field(default=None, alias='answerScore')
+    answer_date: str = Field(default=None, alias='answerDate')
+    answer_kano: AnswerKano = Field(default=None, alias='answerKano')
+    answer_max_diff: List[AnswerMaxDiff] = Field(default=None, alias='answerMaxDiff')
+    answer_joint_analysis: List[AnswerJointAnalysis] = Field(default=None, alias='answerJointAnalysis')
 
 
 class SurveyResult(BaseModel):
-    agentId: str = None
-    results: List[Answer] = None
+    agent_id: str
+    results: List[Answer] = []
+
+
+class QuestionIdx:
+    def __init__(self, agent_id: str, question_id: str, answer: Answer):
+        self.agent_id = agent_id
+        self.question_id = question_id
+        self.answer = answer
 
 
 if __name__ == '__main__':
     import json
 
-    with open('../data/answer.json', 'r') as file:
+    with open('../data/question.json', 'r') as file:
         # 读取文件内容并解析JSON数据
-        data = json.load(file)
-    answers: List[Answer] = [Answer(**item) for item in data]
-    for data in answers:
-        print(data.json(exclude_none=True))
+        data_test = json.load(file)
+    items: List[Question] = [Question(**item) for item in data_test]
+    for data_test in items:
+        print(data_test.json(exclude_none=True, by_alias=True))
