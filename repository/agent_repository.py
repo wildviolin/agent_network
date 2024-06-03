@@ -6,6 +6,10 @@ from model.agent import Agent
 from repository.local import ThreadLocalDataStore
 
 
+def truncate_social_network():
+    get_social_network().clear()
+
+
 def get_social_network() -> DiGraph:
     return ThreadLocalDataStore().get_social_network()
 

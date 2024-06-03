@@ -7,10 +7,13 @@ import numpy as np
 
 import service.agent_generator
 import repository.agent_repository as ag_repo
+import repository.survey_repository as sv_repo
 from repository.city_repository import city_repository as city_repo
 from model.survey import Question, Type
 import service.survey as ss
 
+
+# numpy pandas networkx sklearn
 
 def input_city_names():
     df_city = city_repo.find_all()
@@ -118,23 +121,8 @@ def generate_out_degree_histogram(self):
 if __name__ == '__main__':
     input_cities = ["北京市"]  # input_city_names()
     cities = city_repo.find_all() if len(input_cities) == 0 else city_repo.find_by_city_names(input_cities)
-    total = 20  # input_total_num()
-    start_time = time.time()
-    sn = service.agent_generator.init_social_network(cities, total)
-    end_time = time.time()
-    execution_time = end_time - start_time
-    print(f"gen_agents执行时间: {execution_time:.6f} 秒")
+    #  city_repo.find_by_city_codes(codes)
 
-    start_time = time.time()
-    service.agent_generator.build_relations()
-    end_time = time.time()
-    execution_time = end_time - start_time
-    print(f"build relations执行时间: {execution_time:.6f} 秒")
-
-    # draw_network()
-    # draw_in_degree_histogram()
-    # draw_histogram_bins()
-    start_time = time.time()
     import json
 
     with open('data/question.json', 'r') as file:
@@ -142,11 +130,32 @@ if __name__ == '__main__':
         data = json.load(file)
     questions: List[Question] = [Question(**item) for item in data if item["type"] in Type.__members__]
 
+    total = 1000  # input_total_num()
+    ag_repo.truncate_social_network()
+    sv_repo.truncate_survey_results()
+    start_time = time.time()
+
+    service.agent_generator.init_social_network(cities, total)
+    # end_time = time.time()
+    # execution_time = end_time - start_time
+    # print(f"gen_agents执行时间: {execution_time:.6f} 秒")
+    #
+    # start_time = time.time()
+    service.agent_generator.build_relations()
+    # end_time = time.time()
+    # execution_time = end_time - start_time
+    # print(f"build relations执行时间: {execution_time:.6f} 秒")
+
+    # draw_network()
+    # draw_in_degree_histogram()
+    # draw_histogram_bins()
+    # start_time = time.time()
+
     results = ss.survey_simulate(questions)
 
     end_time = time.time()
     execution_time = end_time - start_time
-    print(f"answer执行时间: {execution_time:.6f} 秒")
+    print(f"{total},{execution_time:.6f}")
 
     jsondata = [item.dict(exclude_none=True) for item in results]
     with open("data/answers.json", 'w', encoding='utf-8') as file:

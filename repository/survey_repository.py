@@ -5,8 +5,17 @@ from model.agent import Agent
 from repository.local import ThreadLocalDataStore
 
 
+def truncate_survey_results():
+    get_survey_results().clear()
+    get_joint_options().clear()
+
+
 def get_survey_results() -> {}:
     return ThreadLocalDataStore().get_survey_results()
+
+
+def get_joint_options() -> {}:
+    return ThreadLocalDataStore().get_joint_options()
 
 
 def all_survey_results() -> List[SurveyResult]:
@@ -40,14 +49,14 @@ def save_survey_answer(agent_id: str, answer: Answer):
 
 
 def get_joint_options_by_question(question_id: str) -> List | None:
-    if question_id in ThreadLocalDataStore().get_joint_options():
-        return ThreadLocalDataStore().get_joint_options()[question_id]
+    if question_id in get_joint_options():
+        return get_joint_options()[question_id]
     else:
         return None
 
 
 def flush_joint_options(question_id: str, options: List):
-    ThreadLocalDataStore().get_joint_options()[str] = options
+    get_joint_options()[str] = options
 
 
 if __name__ == '__main__':
