@@ -157,7 +157,7 @@ if __name__ == '__main__':
     execution_time = end_time - start_time
     print(f"{total},{execution_time:.6f}")
 
-    jsondata = [item.dict(exclude_none=True) for item in results]
+    jsondata = [item.model_dump(exclude_none=True) for item in results]
     with open("data/answers.json", 'w', encoding='utf-8') as file:
         json.dump(jsondata, file, ensure_ascii=False, indent=4)
 

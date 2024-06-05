@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List
+from typing import List, Optional
 from enum import Enum
 
 
@@ -24,7 +24,7 @@ class Type(Enum):
 
 class Question(BaseModel):
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
         json_encoders = {
             Type: lambda t: t.value,
         }
@@ -32,11 +32,11 @@ class Question(BaseModel):
     class Configuration(BaseModel):
         class KanoQuestion(BaseModel):
             class Title(BaseModel):
-                id: str = None
+                id: Optional[str] = None
                 description: str
 
             class Option(BaseModel):
-                description: str = None
+                description: Optional[str] = None
                 baseScore: int
 
             positive: Title
@@ -45,11 +45,11 @@ class Question(BaseModel):
 
         class MaxDiffQuestion(BaseModel):
             class Title(BaseModel):
-                id: str = None
+                id: Optional[str] = None
                 description: str
 
             class Option(BaseModel):
-                id: str = None
+                id: Optional[str] = None
                 description: str
 
             task_number: int = Field(..., alias='taskNumber')
@@ -61,44 +61,44 @@ class Question(BaseModel):
         class JointAnalysisQuestion(BaseModel):
             class Option(BaseModel):
                 id: str
-                title: str = None
+                title: Optional[str] = None
 
                 class LevelOption(BaseModel):
-                    id: str = None
+                    id: Optional[str] = None
                     title: str
 
                 level_options: List[LevelOption] = Field(..., alias='levelOptions')
 
-            choose_nothing_label: str = Field(default=None, alias='chooseNothingLabel')
+            choose_nothing_label: Optional[str] = Field(default=None, alias='chooseNothingLabel')
             allow_choose_nothing: bool = Field(..., alias='allowChooseNothing')
             conceptual_number: int = Field(..., alias='conceptualNumber')
             task_number: int = Field(..., alias='taskNumber')
             options: List[Option]
 
-        required: bool = None
-        min_mark: int = Field(default=None, alias='minMark')
-        max_mark: int = Field(default=None, alias='maxMark')
-        min_mark_label: str = Field(default=None, alias='minMarkLabel')
-        max_mark_label: str = Field(default=None, alias='maxMarkLabel')
-        preset_answers: str = Field(default=None, alias='presetAnswers')
-        allow_other_answers: bool = Field(default=None, alias='allowOtherAnswers')
-        district_cn_level: str = Field(default=None, alias='districtCnLevel')
-        kano_question: KanoQuestion = Field(default=None, alias='kanoQuestion')
-        max_diff_question: MaxDiffQuestion = Field(default=None, alias='maxDiffQuestion')
-        joint_analysis_question: JointAnalysisQuestion = Field(default=None, alias='jointAnalysisQuestion')
+        required: Optional[bool] = None
+        min_mark: Optional[int] = Field(default=None, alias='minMark')
+        max_mark: Optional[int] = Field(default=None, alias='maxMark')
+        min_mark_label: Optional[str] = Field(default=None, alias='minMarkLabel')
+        max_mark_label: Optional[str] = Field(default=None, alias='maxMarkLabel')
+        preset_answers: Optional[str] = Field(default=None, alias='presetAnswers')
+        allow_other_answers: Optional[bool] = Field(default=None, alias='allowOtherAnswers')
+        district_cn_level: Optional[str] = Field(default=None, alias='districtCnLevel')
+        kano_question: Optional[KanoQuestion] = Field(default=None, alias='kanoQuestion')
+        max_diff_question: Optional[MaxDiffQuestion] = Field(default=None, alias='maxDiffQuestion')
+        joint_analysis_question: Optional[JointAnalysisQuestion] = Field(default=None, alias='jointAnalysisQuestion')
 
     class Option(BaseModel):
         id: str
-        title: str = None
-        base_score: int = Field(default=None, alias='baseScore')
-        left_word: str = Field(default=None, alias='leftWord')
-        right_word: str = Field(default=None, alias='rightWord')
+        title: Optional[str] = None
+        base_score: Optional[int] = Field(default=None, alias='baseScore')
+        left_word: Optional[str] = Field(default=None, alias='leftWord')
+        right_word: Optional[str] = Field(default=None, alias='rightWord')
 
     id: str
-    subject: str = None
+    subject: Optional[str] = None
     type: Type
-    config: Configuration = None
-    options: List[Option] = None
+    config: Optional[Configuration] = None
+    options: Optional[List[Option]] = None
 
 
 class Answer(BaseModel):
@@ -113,8 +113,8 @@ class Answer(BaseModel):
     class AnswerMaxDiff(BaseModel):
         task: int
         attribute: str
-        positive: bool = None
-        negative: bool = None
+        positive: Optional[bool] = None
+        negative: Optional[bool] = None
 
     class AnswerJointAnalysis(BaseModel):
         class Attribute(BaseModel):
@@ -131,17 +131,17 @@ class Answer(BaseModel):
 
         task: int
         attributes: List[Attribute]
-        select: bool = None
+        select: Optional[bool] = None
 
     question_id: str = Field(..., alias='questionId')
     answer_options: List[str] = Field(default=None, alias='answerOptions')
     answers: List[Answer] = None
-    answer_auto_fill: str = Field(default=None, alias='answerAutoFill')
-    answer_score: int = Field(default=None, alias='answerScore')
-    answer_date: str = Field(default=None, alias='answerDate')
-    answer_kano: AnswerKano = Field(default=None, alias='answerKano')
-    answer_max_diff: List[AnswerMaxDiff] = Field(default=None, alias='answerMaxDiff')
-    answer_joint_analysis: List[AnswerJointAnalysis] = Field(default=None, alias='answerJointAnalysis')
+    answer_auto_fill: Optional[str] = Field(default=None, alias='answerAutoFill')
+    answer_score: Optional[int] = Field(default=None, alias='answerScore')
+    answer_date: Optional[str] = Field(default=None, alias='answerDate')
+    answer_kano: Optional[AnswerKano] = Field(default=None, alias='answerKano')
+    answer_max_diff: Optional[List[AnswerMaxDiff]] = Field(default=None, alias='answerMaxDiff')
+    answer_joint_analysis: Optional[List[AnswerJointAnalysis]] = Field(default=None, alias='answerJointAnalysis')
 
 
 class SurveyResult(BaseModel):

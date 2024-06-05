@@ -284,7 +284,8 @@ def answer_question_by_weighted_refs(question: Question, answer: Answer,
                     row[a["option_id"]+"_"+a["level"]] = 1
                     attrs.append(Answer.AnswerJointAnalysis.Attribute(optionId=a["option_id"], level=a["level"]))
                 df = pd.concat([cols, pd.DataFrame([row])], ignore_index=True)
-                df.fillna(0)
+                df = df.infer_objects(copy=False)
+                df.fillna(0, inplace=True)
                 y_predict = model.predict(df)
                 answer.answer_joint_analysis.append(
                     Answer.AnswerJointAnalysis(task=t + 1, attributes=attrs, select=(y_predict[0] == "1")))
@@ -305,7 +306,6 @@ def __train_joint_analysis_decision_tree(question: Question, q_refs: List[Questi
     # 构建训练数据
     columns = __build_joint_analysis_onehot_columns(question)
     columns.append("_target")
-    cols = pd.DataFrame(columns=columns)
     data = []
     # joint_options = build_joint_options(question)
     # for jo in joint_options:
@@ -324,43 +324,11 @@ def __train_joint_analysis_decision_tree(question: Question, q_refs: List[Questi
             new_row["_target"] = "1" if ans.select else "0"
             for _ in range(int(relation_weights[q_idx.agent_id])):
                 data.append(new_row)
-    df = pd.concat([cols, pd.DataFrame(data)], ignore_index=True)
-    df.fillna(0)
+    df = pd.DataFrame(data, columns=columns)
+    df.fillna(0, inplace=True)
+
     x = df.iloc[:, 0:-1]
     y = df.iloc[:, -1]
     clf = DecisionTreeClassifier()
     clf.fit(x, y)
     return clf
-
-    #
-    # # 将类别特征转换为数值特征
-    # encoder = OneHotEncoder()
-    # X = encoder.fit_transform(data[['颜色', '发动机', '价格']])
-    # y = data['是否喜欢']
-    #
-    # # 拆分训练集和测试集
-    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    #
-    # # 训练 MLP 模型
-    # mlp = MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=500, random_state=42)
-    # mlp.fit(X_train, y_train)
-    #
-    # # 评估模型
-    # y_predict = mlp.predict(X_test)
-    # print(f"模型准确率: {accuracy_score(y_test, y_predict):.2%}")
-    #
-    # # 生成所有可能的组合
-    # colors = ['red', 'blue']
-    # engines = ['1.5T', '2.0T']
-    # prices = [12, 15, 18]
-    # all_combinations = pd.DataFrame(list(product(colors, engines, prices)), columns=['颜色', '发动机', '价格'])
-    #
-    # # 将所有可能组合转换为模型输入格式
-    # X_all_combinations = encoder.transform(all_combinations)
-    #
-    # # 预测所有可能组合的喜欢概率
-    # predicted_probabilities = mlp.predict_proba(X_all_combinations)[:, 1]
-    #
-    # # 输出结果
-    # all_combinations['喜欢概率'] = predicted_probabilities
-    # print(all_combinations)
