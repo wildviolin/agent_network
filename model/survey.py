@@ -164,4 +164,4 @@ if __name__ == '__main__':
         data_test = json.load(file)
     items: List[Question] = [Question(**item) for item in data_test]
     for data_test in items:
-        print(data_test.json(exclude_none=True, by_alias=True))
+        print(data_test.model_dump_json(exclude_none=True, by_alias=True))
